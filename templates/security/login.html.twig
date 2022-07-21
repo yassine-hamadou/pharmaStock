@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block class %}
+    class="hold-transition login-page"
+{% endblock %}
+
+{% block body %}
+<div class="login-box">
+  <!-- /.login-logo -->
+  <div class="card card-outline card-primary">
+    <div class="card-header text-center">
+      <a href="" class="h1"><b>Pharma</b>Stock</a>
+    </div>
+    <div class="card-body">
+      <p class="login-box-msg">Connectez-vous pour commencer!</p>
+
+      <form method="post">
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+        {% if app.user %}
+            <div class="mb-3">
+                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+            </div>
+        {% endif %}
+        <label for="inputEmail">
+            Email
+        </label>
+        <div class="input-group mb-3">
+          <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" placeholder="Email" required autofocus>
+          
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-envelope"></span>
+            </div>
+          </div>
+        </div>
+
+        <label for="inputPassword">
+            Password
+        </label>
+        <div class="input-group mb-3">
+          <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" placeholder="Password" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-lock"></span>
+            </div>
+          </div>
+        </div>
+        <input type="hidden" name="_csrf_token"
+           value="{{ csrf_token('authenticate') }}"
+        >
+        {#
+            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
+            See https://symfony.com/doc/current/security/remember_me.html
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" name="_remember_me"> Remember me
+                </label>
+            </div>
+        #}
+        <div class="row">
+          <div class="col-5">
+            <button class="btn btn-primary btn-block" type="submit">
+                Se connecter
+            </button>
+          </div>
+          <!-- /.col -->
+        </div>
+      </form>
+
+
+
+      <p class="mb-1">
+        <a href="forgot-password.html">Mot de passe oublié?</a>
+      </p>
+      <p class="mb-0">
+        <a href="{{ path('app_register') }}" class="text-center">Nouvel utilisateur</a>
+      </p>
+    </div>
+    <!-- /.card-body -->
+  </div>
+  <!-- /.card -->
+</div>
+{% endblock %}

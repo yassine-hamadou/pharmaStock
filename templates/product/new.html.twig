@@ -1,0 +1,26 @@
+{% extends 'dashboard/dashboardBase.html.twig' %}
+
+{% block title %}New Product{% endblock %}
+
+{% block dashboardSection %}
+    <h1></h1>
+      <div class="card card-teal">
+        <div class="card-header">
+          <h2 class="card-title">Créer nouveau produit</h2>
+        </div>
+        <!-- /.card-header -->
+        
+        {{ form_start(form) }}
+          <div class="card-body">
+            {{ form_widget(form) }}
+          </div>
+            <!-- /.card-body -->  
+          <div class="card-footer">
+            <button class="btn" style="background-color: #20c997; color: white;">{{ button_label|default('Ajouter produit') }}</button>
+          </div>
+        {{ form_end(form) }}
+      </div>
+    
+
+    <a href="{{ path('app_product_index') }}">Retour a la liste</a>
+{% endblock %}

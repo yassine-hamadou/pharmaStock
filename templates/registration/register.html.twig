@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block class %}
+    class="hold-transition register-page"
+{% endblock %}
+
+{% block body %}
+    <div class="register-box">
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center">
+            <a href="../../index2.html" class="h1"><b>Pharma</b>Stock</a>
+            </div>
+            <div class="card-body">
+            <p class="login-box-msg">Enregistrer un nouveau membre</p>
+        
+            {{ form_start(registrationForm) }}
+                <div class="mb-3">
+                    {{ form_row(registrationForm.nom)}}
+                </div>
+                <div class="mb-3">
+                    {{ form_row(registrationForm.prenom) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_row(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+                </div>
+                <div class="mb-3">
+                    {{ form_row(registrationForm.plainPassword, {
+                    label: 'Password'
+                }) }}
+                </div>
+                <div class="row">
+                <div class="col-5">
+                    <button type="submit" class="btn btn-primary btn-block">Enregistrer</button>
+                </div>
+                <!-- /.col -->
+                </div>
+            
+
+            
+
+            <a href="{{ path('app_login') }}" class="text-center">J'ai deja un compte</a>
+            {{ form_end(registrationForm) }}
+            <!-- /.form-box -->
+        </div><!-- /.card -->
+    </div>
+{% endblock %}
