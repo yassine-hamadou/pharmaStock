@@ -39,6 +39,6 @@ class ProductType
      */
     public function __toString()
     {
-        return $this->nomCategory;
+        return $this->getNomCategory();
     }
 }

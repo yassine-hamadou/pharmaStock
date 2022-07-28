@@ -1,0 +1,58 @@
+{% extends 'dashboard/dashboardBase.html.twig' %}
+
+{% block title %}Nouveau Stock{% endblock %}
+
+{% block dashboardSection %}
+    <div class="card card-teal">
+        <div class="card-header">
+          <h2 class="card-title">Créer stock d'un produit</h2>
+        </div>
+        <!-- /.card-header -->
+         
+        {{ form_start(form) }}
+          <div class="card-body">
+            <div class="form-group">
+              <label>Nom du produit</label>
+              {{ form_widget(form.idProduit, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+            <div class="form-group">
+              <label>Fournisseur</label>
+              <div class="row">
+                {{ form_widget(form.idFournisseur, { 'attr': {'class': 'form-control col-11 mr-3'} }) }}
+                <a class="btn" style="background-color: #20c997; color: white;" href="{{ path('app_fournisseur_new') }}">Créer</a>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Date fourni</label>
+              {{ form_widget(form.dateFourni, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+            <div class="form-group">
+              <label>Date de fabrication</label>
+              {{ form_widget(form.dateFabrication, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+            <div class="form-group">
+              <label>Date de péremption</label>
+              {{ form_widget(form.datePeremption, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+            <div class="form-group">
+              <label>Quantité</label>
+              {{ form_widget(form.quantite, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+            <div class="form-group">
+              <label>Prix d'achat unitaire</label>
+              {{ form_widget(form.prixAchat, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+            <div class="form-group">
+              <label>Prix de revente unitaire</label>
+              {{ form_widget(form.prixVente, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+          </div>
+            <!-- /.card-body -->  
+          <div class="card-footer">
+            <button class="btn" style="background-color: #20c997; color: white;">{{ button_label|default('Ajouter stock') }}</button>
+          </div>
+        {{ form_end(form) }}
+      </div>
+
+    <a href="{{ path('app_stock_index') }}">Liste des stocks</a>
+{% endblock %}

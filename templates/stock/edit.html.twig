@@ -1,0 +1,13 @@
+{% extends 'dashboard/dashboardBase.html.twig' %}
+
+{% block title %}Edit Stock{% endblock %}
+
+{% block dashboardSection %}
+    <h1>Edit Stock</h1>
+
+    {{ include('stock/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_stock_index') }}">Retour a la liste des stocks</a>
+
+    {{ include('stock/_delete_form.html.twig') }}
+{% endblock %}

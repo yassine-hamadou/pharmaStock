@@ -1,0 +1,59 @@
+{% extends 'dashboard/dashboardBase.html.twig' %}
+
+{% block title %}Stock index{% endblock %}
+
+{% block dashboardSection %}
+    <div class="card card-teal">
+        <div class="card-header">
+          <h2 class="card-title">Liste des stocks</h2>
+        </div>
+        <!-- /.card-header -->
+        <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Produit</th>
+                <th>Fournisseur</th>
+                <th>Date Fourni</th>
+                <th>Date de Fabrication</th>
+                <th>Date de Peremption</th>
+                <th>Quantité</th>
+                <th>Prix d'achat unitaire</th>
+                <th>Prix de revente unitaire</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for stock in stocks %}
+            <tr>
+                <td>{{ stock.id }}</td>
+                <td>{{ stock.idProduit }}</td>
+                <td>{{ stock.idFournisseur }}</td>
+                <td>{{ stock.dateFourni ? stock.dateFourni|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ stock.dateFabrication ? stock.dateFabrication|date('Y-m-d') : '' }}</td>
+                <td>{{ stock.datePeremption ? stock.datePeremption|date('Y-m-d') : '' }}</td>
+                <td>{{ stock.quantite }}</td>
+                <td>{{ stock.prixAchat }}</td>
+                <td>{{ stock.prixVente }}</td>
+                <td>
+                    <a href="{{ path('app_stock_show', {'id': stock.id}) }}">show</a>
+                    <a href="{{ path('app_stock_edit', {'id': stock.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">Aucun element</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+        <!-- /.card-body -->  
+        {# <div class="card-footer">
+            <a class="btn" style="background-color: #20c997; color: white;" href="{{ path('app_stock_new') }}">Créer</a>
+        </div> #}
+    </div>
+
+    
+
+    
+{% endblock %}

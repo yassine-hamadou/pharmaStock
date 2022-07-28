@@ -1,0 +1,39 @@
+{% extends 'dashboard/dashboardBase.html.twig' %}
+
+{% block title %}Fournisseur index{% endblock %}
+
+{% block dashboardSection %}
+    <h1>Fournisseur index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NomFournisseur</th>
+                <th>Phone</th>
+                <th>Email</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for fournisseur in fournisseurs %}
+            <tr>
+                <td>{{ fournisseur.id }}</td>
+                <td>{{ fournisseur.nomFournisseur }}</td>
+                <td>{{ fournisseur.phone }}</td>
+                <td>{{ fournisseur.email }}</td>
+                <td>
+                    <a href="{{ path('app_fournisseur_show', {'id': fournisseur.id}) }}">show</a>
+                    <a href="{{ path('app_fournisseur_edit', {'id': fournisseur.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_fournisseur_new') }}">Create new</a>
+{% endblock %}

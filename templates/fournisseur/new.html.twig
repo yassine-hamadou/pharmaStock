@@ -1,9 +1,9 @@
 {% extends 'dashboard/dashboardBase.html.twig' %}
 
-{% block title %}New Product{% endblock %}
+{% block title %}New Fournisseur{% endblock %}
 
 {% block dashboardSection %}
-      <div class="card card-teal">
+    <div class="card card-teal">
         <div class="card-header">
           <h2 class="card-title">Créer nouveau produit</h2>
         </div>
@@ -15,11 +15,10 @@
           </div>
             <!-- /.card-body -->  
           <div class="card-footer">
-            <button class="btn" style="background-color: #20c997; color: white;">{{ button_label|default('Ajouter produit') }}</button>
+            <button class="btn" style="background-color: #20c997; color: white;">{{ button_label|default('Ajouter fournisseur') }}</button>
           </div>
         {{ form_end(form) }}
       </div>
-    
 
-    <a href="{{ path('app_product_index') }}">Retour a la liste</a>
+    <a href="{{ path('app_fournisseur_index') }}">Retour</a>
 {% endblock %}
