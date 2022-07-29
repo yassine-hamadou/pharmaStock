@@ -1,0 +1,31 @@
+{% extends 'dashboard/dashboardBase.html.twig' %}
+
+{% block title %}New Stock{% endblock %}
+
+{% block dashboardSection %}
+    <div class="card card-teal">
+        <div class="card-header">
+          <h2 class="card-title">Créer stock d'un produit</h2>
+        </div>
+        <!-- /.card-header -->
+        
+        {{ form_start(form) }}
+          <div class="card-body">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Nom du produit</label>
+              {{ form_widget(form.idProduit, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+            <div class="form-group">
+              <label for="exampleInputPassword1">Prix du produit</label>
+              {{ form_widget(form.idFournisseur, { 'attr': {'class': 'form-control'} }) }}
+            </div>
+          </div>
+            <!-- /.card-body -->  
+          <div class="card-footer">
+            <button class="btn" style="background-color: #20c997; color: white;">{{ button_label|default('Ajouter stock') }}</button>
+          </div>
+        {{ form_end(form) }}
+      </div>
+
+    <a href="{{ path('app_stock_index') }}">Liste des stocks</a>
+{% endblock %}

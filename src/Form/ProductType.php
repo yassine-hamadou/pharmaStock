@@ -15,9 +15,10 @@ class ProductType extends AbstractType
     {
         $builder
             ->add('productName', TextType::class, [
+                'label' => 'Nom du produit',
                 'attr' => [
                     'class' => 'form-control mb-3'
-                ]
+                ],
             ])
             ->add('description')
             ->add('category', EntityType::class, array('class' => 'App\Entity\ProductType'));

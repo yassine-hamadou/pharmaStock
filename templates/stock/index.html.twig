@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stock index{% endblock %}
+
+{% block body %}
+    <h1>Stock index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Produit</th>
+                <th>Fournisseur</th>
+                <th>DateFourni</th>
+                <th>DateFabrication</th>
+                <th>DatePeremption</th>
+                <th>Quantite</th>
+                <th>PrixAchat</th>
+                <th>PrixVente</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for stock in stocks %}
+            <tr>
+                <td>{{ stock.id }}</td>
+                <td>{{ stock.idProduit }}</td>
+                <td>{{ stock.idFournisseur }}</td>
+                <td>{{ stock.dateFourni ? stock.dateFourni|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ stock.dateFabrication ? stock.dateFabrication|date('Y-m-d') : '' }}</td>
+                <td>{{ stock.datePeremption ? stock.datePeremption|date('Y-m-d') : '' }}</td>
+                <td>{{ stock.quantite }}</td>
+                <td>{{ stock.prixAchat }}</td>
+                <td>{{ stock.prixVente }}</td>
+                <td>
+                    <a href="{{ path('app_stock_show', {'id': stock.id}) }}">show</a>
+                    <a href="{{ path('app_stock_edit', {'id': stock.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_stock_new') }}">Create new</a>
+{% endblock %}
