@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/dashboardBase.html.twig' %}
 
 {% block title %}Edit ProductType{% endblock %}
 
-{% block body %}
-    <h1>Edit ProductType</h1>
+{% block dashboardSection %}
+    <h1>Modifier categorie</h1>
 
     {{ include('product_type/_form.html.twig', {'button_label': 'Update'}) }}
 

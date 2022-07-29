@@ -20,8 +20,23 @@ class ProductType extends AbstractType
                     'class' => 'form-control mb-3'
                 ],
             ])
-            ->add('description')
-            ->add('category', EntityType::class, array('class' => 'App\Entity\ProductType'));
+            ->add('description', null, [
+                // need to ask for the what let me make a description field form the cmd
+                'label' => 'Description',
+                'attr' => [
+                    'class' => 'form-control mb-3',
+                    'rows' => '5',
+                    'style' => 'resize: none'
+                ],
+            ])
+            ->add('category', EntityType::class, [
+                'label' => 'Catégorie',
+                'class' => 'App\Entity\ProductType',
+                'choice_label' => 'nomCategory',
+                'attr' => [
+                    'class' => 'form-control mb-3'
+                ],
+            ]);
         ;
     }
 

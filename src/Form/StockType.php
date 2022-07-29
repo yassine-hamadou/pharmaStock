@@ -13,64 +13,27 @@ class StockType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('idProduit', null, [
-                'label' => 'Produit',
-                'attr' => [
-                    'class' => 'form-control mb-3 col-10'
-                ],
-            ])
+            ->add('idProduit')
             
-            ->add('idFournisseur', null, [
-                'label' => 'Fournisseur',
-                'attr' => [
-                    'class' => 'form-control mb-3'
-                ],
-            ])
+            ->add('idFournisseur')
 
             ->add('dateFourni', DateType::class, [
-                'label' => 'Date fourni',
-                'widget' => 'single_text',
-                'attr' => [
-                    'class' => 'form-control mb-3'
-                ],
+                'widget' => 'single_text'
             ])
 
             ->add('dateFabrication', DateType::class, [
-                'widget' => 'single_text',
-                'label' => 'Date de fabrication',
-                'attr' => [
-                    'class' => 'form-control mb-3'
-                ],
+                'widget' => 'single_text'
             ])
 
             ->add('datePeremption', DateType::class, [
-                'widget' => 'single_text',
-                'label' => 'Date de péremption',
-                'attr' => [
-                    'class' => 'form-control mb-3'
-                ],
+                'widget' => 'single_text'
             ])
 
-            ->add('quantite', null, [
-                'label' => 'Quantité',
-                'attr' => [
-                    'class' => 'form-control mb-3'
-                ],
-            ])
+            ->add('quantite')
 
-            ->add('prixAchat', null, [
-                'label' => 'Prix d\'achat',
-                'attr' => [
-                    'class' => 'form-control mb-3'
-                ],
-            ])
+            ->add('prixAchat')
 
-            ->add('prixVente', null, [
-                'label' => 'Prix de revente',
-                'attr' => [
-                    'class' => 'form-control mb-3'
-                ],
-            ])
+            ->add('prixVente')
         ;
     }
 

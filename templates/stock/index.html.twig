@@ -1,22 +1,25 @@
-{% extends 'base.html.twig' %}
+{% extends 'dashboard/dashboardBase.html.twig' %}
 
 {% block title %}Stock index{% endblock %}
 
-{% block body %}
-    <h1>Stock index</h1>
-
-    <table class="table">
+{% block dashboardSection %}
+    <div class="card card-teal">
+        <div class="card-header">
+          <h2 class="card-title">Liste des stocks</h2>
+        </div>
+        <!-- /.card-header -->
+        <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
                 <th>Produit</th>
                 <th>Fournisseur</th>
-                <th>DateFourni</th>
-                <th>DateFabrication</th>
-                <th>DatePeremption</th>
-                <th>Quantite</th>
-                <th>PrixAchat</th>
-                <th>PrixVente</th>
+                <th>Date Fourni</th>
+                <th>Date de Fabrication</th>
+                <th>Date de Peremption</th>
+                <th>Quantité</th>
+                <th>Prix d'achat unitaire</th>
+                <th>Prix de revente unitaire</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -39,11 +42,18 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Aucun element</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
+        <!-- /.card-body -->  
+        {# <div class="card-footer">
+            <a class="btn" style="background-color: #20c997; color: white;" href="{{ path('app_stock_new') }}">Créer</a>
+        </div> #}
+    </div>
 
-    <a href="{{ path('app_stock_new') }}">Create new</a>
+    
+
+    
 {% endblock %}

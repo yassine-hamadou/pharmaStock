@@ -2,10 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Product;
 use App\Entity\Stock;
+use App\Entity\Fournisseur;
 use App\Form\StockType;
+use App\Form\ProductType;
+use App\Form\FournisseurType;
 use App\Repository\ProductRepository;
 use App\Repository\StockRepository;
+use App\Repository\FournisseurRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -24,7 +29,7 @@ class StockController extends AbstractController
     }
 
     #[Route('/new', name: 'app_stock_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, StockRepository $stockRepository): Response
+    public function new(Request $request, StockRepository $stockRepository, ProductRepository $productRepository, FournisseurRepository $fournisseurRepository): Response
     {
         $stock = new Stock();
         $form = $this->createForm(StockType::class, $stock);
@@ -36,9 +41,33 @@ class StockController extends AbstractController
             return $this->redirectToRoute('app_stock_index', [], Response::HTTP_SEE_OTHER);
         }
 
+
+        //product form for modal
+        $product = new Product();
+        $productForm = $this->createForm(ProductType::class, $product);
+        $productForm->handleRequest($request);
+        
+        if ($productForm->isSubmitted() && $productForm->isValid()) {
+            $productRepository->add($product, true);
+
+            return $this->redirectToRoute('app_stock_new', [], Response::HTTP_SEE_OTHER);
+        }
+
+        //fournisseur form for modal
+        $fournisseur = new Fournisseur();
+        $fournisseurForm = $this->createForm(FournisseurType::class, $fournisseur);
+        $fournisseurForm->handleRequest($request);
+
+        if ($fournisseurForm->isSubmitted() && $fournisseurForm->isValid()) {
+            $fournisseurRepository->add($fournisseur, true);
+
+            return $this->redirectToRoute('app_stock_new', [], Response::HTTP_SEE_OTHER);
+        }
+
         return $this->renderForm('stock/new.html.twig', [
-            'stock' => $stock,
             'form' => $form,
+            'productForm' => $productForm,
+            'fournisseurForm' => $fournisseurForm,
         ]);
     }
 
