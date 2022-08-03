@@ -1,4 +1,16 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="card card-teal mb-0">
+	<div class="card-header">
+		<h2 class="card-title">Créer nouveau fournisseur</h2>
+	</div>
+	<!-- /.card-header -->
+
+	{{ form_start(form)}}
+	<div class="card-body">
+		{{ form_widget(form) }}
+	</div>
+	<!-- /.card-body -->
+	<div class="card-footer">
+		<button class="btn" style="background-color: #20c997; color: white;">{{ button_label|default('Ajouter fournisseur') }}</button>
+	</div>
+	{{ form_end(form) }}
+</div>

@@ -21,34 +21,7 @@
 							Créer
 						</button>
 					</div>
-					{# modal pour créer un nouveau produit #}
-					<div class="modal fade" id="modal-produit">
-						<div class="modal-dialog modal-lg">
-							<div class="modal-content">
-                <div class="card card-teal mb-0">
-                  <div class="card-header">
-                    <h2 class="card-title">Créer nouveau produit</h2>
-                  </div>
-                  <!-- /.card-header -->
 
-                  {{ form_start(productForm) }}
-                  <div class="card-body">
-                    {{ form_widget(productForm) }}
-                  </div>
-                  <!-- /.card-body -->
-                  <div class="card-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
-                    <button class="btn" style="background-color: #20c997; color: white; float: right;">{{ button_label|default('Ajouter produit') }}</button>
-                  </div>
-
-                  {{ form_end(productForm) }}
-                  <!-- /.card-body -->
-                </div>
-							</div>
-							<!-- /.modal-content -->
-						</div>
-						<!-- /.modal-dialog -->
-					</div>
 
 				</div>
 			</div>
@@ -59,47 +32,9 @@
 					<div class="row">
 						{{ form_widget(form.idFournisseur, { 'attr': {'class': 'form-control col-11 mr-3'} }) }}
 						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-fournisseur">
-							Créer f
+							Créer
 						</button>
 					</div>
-
-					{# modal pour créer un nouveau fournisseur #}
-					<div class="modal fade" id="modal-fournisseur">
-						<div class="modal-dialog modal-lg">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h4 class="modal-title">Créer un fournisseur</h4>
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-										<span aria-hidden="true">&times;</span>
-									</button>
-								</div>
-
-								<div class="modal-body">
-									<div class="card card-teal">
-										<div class="card-header">
-											<h2 class="card-title">Créer nouveau fournisseur</h2>
-										</div>
-										<!-- /.card-header -->
-
-										<div class="card-body"></div>
-										<!-- /.card-body -->
-										<div class="card-footer">
-											<button class="btn" style="background-color: #20c997; color: white;">{{ button_label|default('Ajouter fournisseur') }}</button>
-										</div>
-										{# {{ form_end(form) }} #}
-									</div>
-								</div>
-
-								<div class="modal-footer justify-content-between">
-									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									<button type="button" class="btn btn-primary">Enregistrer</button>
-								</div>
-							</div>
-							<!-- /.modal-content -->
-						</div>
-						<!-- /.modal-dialog -->
-					</div>
-
 				</div>
 			</div>
 
@@ -134,6 +69,30 @@
 			<button class="btn" style="background-color: #20c997; color: white;">{{ button_label|default('Ajouter stock') }}</button>
 		</div>
 		{{ form_end(form) }}
+	</div>
+
+
+
+	{# modal pour créer un nouveau produit #}
+	<div class="modal fade" id="modal-produit">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				{{ render(controller('App\\Controller\\ProductController')) }}
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+	{# modal pour créer un nouveau fournisseur #}
+	<div class="modal fade" id="modal-fournisseur">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				{{ render(controller('App\\Controller\\FournisseurController')) }}
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
 	</div>
 
 	<a href="{{ path('app_stock_index') }}">Liste des stocks</a>

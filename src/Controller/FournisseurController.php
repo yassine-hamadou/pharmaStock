@@ -75,4 +75,22 @@ class FournisseurController extends AbstractController
 
         return $this->redirectToRoute('app_fournisseur_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    //invoke function 
+    public function __invoke(Request $request, FournisseurRepository $fournisseurRepository): Response
+    {
+        $fournisseur = new Fournisseur();
+        $form = $this->createForm(FournisseurType::class, $fournisseur);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $fournisseurRepository->add($fournisseur, true);
+
+            return $this->redirectToRoute('app_stock_new', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('fournisseur/_form.html.twig', array(
+            'form' => $form->createView())
+        );   
+    }
 }

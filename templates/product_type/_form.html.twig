@@ -1,4 +1,19 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+<div class="card card-teal mb-0">
+	<div class="card-header">
+		<h2 class="card-title">Créer une nouvelle categorie de produits</h2>
+	</div>
+	<!-- /.card-header -->
+	<div class="card-body">
+    {{ form_start(categorieForm, {'action' : path('app_product_type_new')}) }}
+		<div class="form-group">
+			<label>Nom de la categorie</label>
+			{{ form_widget(categorieForm.nomCategory, { 'attr': {'class': 'form-control'} }) }}
+		</div>
+	</div>
+	<!-- /.card-body -->
+	<div class="card-footer">
+		<button type="button" class="btn btn-default" data-dismiss="modal">Annuler</button>
+		<button class="btn" type="submit" style="background-color: #20c997; color: white; float: right;">{{ button_label|default('Ajouter categorie') }}</button>
+	</div>
+	{{ form_end(categorieForm) }}
+</div>

@@ -2,9 +2,14 @@
 
 namespace App\Controller;
 
+use App\Entity\ProductType as CategoryEntity;
+use App\Form\ProductTypeType;
+use App\Repository\ProductTypeRepository;
+
 use App\Entity\Product;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -22,7 +27,7 @@ class ProductController extends AbstractController
     }
 
     #[Route('/new', name: 'app_product_new', methods: ['GET', 'POST'])]
-    public function new(Request $request, ProductRepository $productRepository): Response
+    public function new(Request $request, ProductRepository $productRepository, ProductTypeRepository $productTypeRepository): Response
     {
         $product = new Product();
         $form = $this->createForm(ProductType::class, $product);
@@ -34,9 +39,23 @@ class ProductController extends AbstractController
             return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
         }
 
+
+        
+        $categorie = new CategoryEntity();
+        $categorieForm = $this->createForm(ProductTypeType::class, $categorie);
+        $categorieForm->handleRequest($request);
+
+        if ($categorieForm->isSubmitted() && $categorieForm->isValid()) {
+            $productTypeRepository->add($categorie, true);
+            
+            return $this->redirectToRoute('app_product_new', [], Response::HTTP_SEE_OTHER);
+        }
+
+
         return $this->renderForm('product/new.html.twig', [
-            'product' => $product,
             'form' => $form,
+            'categorieForm' => $categorieForm,
+            
         ]);
     }
 
@@ -72,7 +91,25 @@ class ProductController extends AbstractController
         if ($this->isCsrfTokenValid('delete'.$product->getId(), $request->request->get('_token'))) {
             $productRepository->remove($product, true);
         }
-
+        
         return $this->redirectToRoute('app_product_index', [], Response::HTTP_SEE_OTHER);
+    }
+    
+    //Invoke function
+    public function __invoke(Request $request, ProductRepository $productRepository): Response
+    {
+        $product = new Product();
+        $form = $this->createForm(ProductType::class, $product);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $productRepository->add($product, true);
+
+            return $this->redirectToRoute('app_stock_new', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->render('product/_form.html.twig', array(
+            'form' => $form->createView())
+        );   
     }
 }

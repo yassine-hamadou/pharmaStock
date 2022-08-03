@@ -1,25 +1,60 @@
 {% extends 'dashboard/dashboardBase.html.twig' %}
 
-{% block title %}New Product{% endblock %}
+{% block title %}New Product
+{% endblock %}
 
 {% block dashboardSection %}
-      <div class="card card-teal">
-        <div class="card-header">
-          <h2 class="card-title">Créer nouveau produit</h2>
-        </div>
-        <!-- /.card-header -->
-        
-        {{ form_start(form) }}
-          <div class="card-body">
-            {{ form_widget(form) }}
-          </div>
-            <!-- /.card-body -->  
-          <div class="card-footer">
-            <button class="btn" style="background-color: #20c997; color: white;">{{ button_label|default('Ajouter produit') }}</button>
-          </div>
-        {{ form_end(form) }}
-      </div>
-    
+	<div class="card card-teal">
+		<div class="card-header">
+			<h2 class="card-title">Créer nouveau produit</h2>
+		</div>
+		<!-- /.card-header -->
 
-    <a href="{{ path('app_product_index') }}">Retour a la liste</a>
+		{{ form_start(form) }}
+		<div class="card-body">
+
+
+			<div class="form-group">
+				<label>Nom du produit</label>
+				{{ form_widget(form.productName, { 'attr': {'class': 'form-control'} }) }}
+			</div>
+
+			<div class="form-group">
+				<label>Description</label>
+				{{ form_widget(form.description, { 'attr': {'class': 'form-control'} }) }}
+			</div>
+
+			<div class="form-group">
+				<label>Categorie</label>
+				<div class="container-fluid">
+					<div class="row">
+						{{ form_widget(form.category, { 'attr': {'class': 'form-control col-11 mr-2'} }) }}
+						<button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-categorie" href="{{ path('app_product_new') }}">
+							Ajouter
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.card-body -->
+		<div class="card-footer">
+			<button class="btn" style="background-color: #20c997; color: white;">{{ button_label|default('Ajouter produit') }}</button>
+		</div>
+		{{ form_end(form) }}
+	</div>
+	{# modal pour créer une nouvelle categorie #}
+	<div class="modal fade" id="modal-categorie">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				{# {{ render(controller('App\\Controller\\ProductTypeController::new')) }} #}
+
+				{# Could also call the controller as bellow #}
+				{{ render('product/type/new') }}
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+	<a href="{{ path('app_product_index') }}">Retour a la liste</a>
 {% endblock %}

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Form;
-
+ 
 use App\Entity\Product;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -20,8 +20,9 @@ class ProductType extends AbstractType
                     'class' => 'form-control mb-3'
                 ],
             ])
+
             ->add('description', null, [
-                // need to ask for the what let me make a description field form the cmd
+                // need to ask for what let me make a description field form the cmd when genrating the form
                 'label' => 'Description',
                 'attr' => [
                     'class' => 'form-control mb-3',
@@ -29,6 +30,7 @@ class ProductType extends AbstractType
                     'style' => 'resize: none'
                 ],
             ])
+            
             ->add('category', EntityType::class, [
                 'label' => 'Catégorie',
                 'class' => 'App\Entity\ProductType',

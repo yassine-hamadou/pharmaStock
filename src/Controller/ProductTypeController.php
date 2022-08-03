@@ -31,12 +31,11 @@ class ProductTypeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $productTypeRepository->add($productType, true);
 
-            return $this->redirectToRoute('app_product_type_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('', [], Response::HTTP_SEE_OTHER);
         }
 
-        return $this->renderForm('product_type/new.html.twig', [
-            'product_type' => $productType,
-            'form' => $form,
+        return $this->renderForm('product_type/_form.html.twig', [
+            'categorieForm' => $form,
         ]);
     }
 
